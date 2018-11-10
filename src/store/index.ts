@@ -2,17 +2,20 @@ import { combineReducers } from 'redux';
 import * as camera from './reducer-camera';
 import * as refs from './reducer-refs';
 import * as screen from './reducer-screen';
+import * as share from './reducer-share';
 
 export interface RootReducerState {
 	camera: camera.ReducerState;
 	refs: refs.ReducerState;
 	screen: screen.ReducerState;
+	share: share.ReducerState;
 }
 
 const reducer = combineReducers<RootReducerState>({
 	camera: camera.default,
 	refs: refs.default,
 	screen: screen.default,
+	share: share.default,
 });
 
 export default reducer;
@@ -43,4 +46,12 @@ export const getScreenInnerWidth = (state: RootReducerState) => (
 
 export const getScreenInnerHeight = (state: RootReducerState) => (
 	screen.getScreenInnerHeight(state.screen)
+);
+
+export const isSendPhotoError = (state: RootReducerState) => (
+	share.isSendPhotoError(state.share)
+);
+
+export const getSendPhotoError = (state: RootReducerState) => (
+	share.getSendPhotoError(state.share)
 );

@@ -70,3 +70,18 @@ export const setVideoRef = (element: HTMLVideoElement): ActionSetRef => ({
 		element,
 	},
 });
+
+/* # Send photo */
+
+/* ## Send photo error */
+
+export interface ActionSendPhotoError extends Action {
+	type: 'SendPhotoError';
+	data: {
+		message: string;
+	};
+}
+
+export const isActionSendPhotoError = (action: Action): action is ActionSendPhotoError => (
+	action.type === 'SendPhotoError'
+);

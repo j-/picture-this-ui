@@ -2,15 +2,11 @@ import { ThunkAction } from 'redux-thunk';
 import { RootReducerState, getVideoRef } from './index';
 
 import {
-	ActionRequestCamera,
-	ActionRequestCameraSuccess,
-	ActionRequestCameraError,
+	ActionSendPhotoError,
 } from './actions';
 
-type RequestCameraActions = (
-	ActionRequestCamera |
-	ActionRequestCameraError |
-	ActionRequestCameraSuccess
+type SendPhotoActions = (
+	ActionSendPhotoError
 )
 
 interface ShareOptions {
@@ -25,11 +21,21 @@ interface Navigator {
 
 declare var navigator: Navigator;
 
-export const sendPhoto = (): ThunkAction<void, RootReducerState, void, RequestCameraActions> => async (dispatch, getState) => {
+export const sendPhoto = (): ThunkAction<void, RootReducerState, void, SendPhotoActions> => async (dispatch, getState) => {
 	const state = getState();
 	const video = getVideoRef(state);
 
-	if (video && typeof navigator.share === 'function') {
+	if (!video || typeof navigator.share !== 'function') {
+		dispatch<ActionSendPhotoError>({
+			type: 'SendPhotoError',
+			data: {
+				message: 'Share function is not supported',
+			},
+		});
+		return;
+	}
+
+	try {
 		const canvas = document.createElement('canvas');
 		canvas.width = video.width;
 		canvas.height = video.height;
@@ -39,6 +45,13 @@ export const sendPhoto = (): ThunkAction<void, RootReducerState, void, RequestCa
 		await navigator.share({
 			title: 'Picture This!',
 			url,
+		});
+	} catch (err) {
+		dispatch<ActionSendPhotoError>({
+			type: 'SendPhotoError',
+			data: {
+				message: err.message
+			},
 		});
 	}
 };
