@@ -25,23 +25,22 @@ export const sendPhoto = (): ThunkAction<void, RootReducerState, void, SendPhoto
 	const state = getState();
 	const video = getVideoRef(state);
 
-	if (!video || typeof navigator.share !== 'function') {
-		dispatch<ActionSendPhotoError>({
-			type: 'SendPhotoError',
-			data: {
-				message: 'Share function is not supported',
-			},
-		});
-		return;
-	}
-
 	try {
+		if (!video) {
+			throw new Error('Video stream was not available');
+		}
+
+		if (!navigator.share) {
+			throw new Error('Share function is not supported');
+		}
+
 		const canvas = document.createElement('canvas');
 		canvas.width = video.width;
 		canvas.height = video.height;
 		const ctx = canvas.getContext('2d') as CanvasRenderingContext2D;
 		ctx.drawImage(video, 0, 0, video.width, video.height);
 		const url = canvas.toDataURL();
+
 		await navigator.share({
 			title: 'Picture This!',
 			url,
