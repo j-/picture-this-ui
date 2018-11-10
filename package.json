@@ -15,7 +15,9 @@
     "start": "react-scripts-j start",
     "build": "react-scripts-j build",
     "test": "react-scripts-j test --env=jsdom",
-    "eject": "react-scripts-j eject"
+    "eject": "react-scripts-j eject",
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d build"
   },
   "devDependencies": {
     "@types/jest": "^23.3.9",
@@ -23,6 +25,19 @@
     "@types/react": "^16.7.2",
     "@types/react-dom": "^16.0.9",
     "@types/react-redux": "^6.0.9",
+    "gh-pages": "^2.0.1",
     "typescript": "^3.1.6"
-  }
+  },
+  "description": "Picture This! UI",
+  "main": "index.js",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/j-/picture-this-ui.git"
+  },
+  "author": "Jamie Hoeks <j@skeoh.com>",
+  "license": "UNLICENSED",
+  "bugs": {
+    "url": "https://github.com/j-/picture-this-ui/issues"
+  },
+  "homepage": "https://skeoh.com/picture-this-ui"
 }
