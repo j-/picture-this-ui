@@ -4,6 +4,7 @@ import { createStore, applyMiddleware } from 'redux';
 import rootReducer from './store';
 import { composeWithDevTools } from 'redux-devtools-extension';
 import thunk from 'redux-thunk';
+import { requestCamera } from './store/action-request-camera';
 import { Provider as StoreProvider } from 'react-redux';
 import App from './components/App';
 import registerServiceWorker from './registerServiceWorker';
@@ -12,6 +13,8 @@ import './index.css';
 const store = createStore(rootReducer, composeWithDevTools(
 	applyMiddleware(thunk),
 ));
+
+store.dispatch(requestCamera());
 
 ReactDOM.render(
 	<StoreProvider store={store}>
