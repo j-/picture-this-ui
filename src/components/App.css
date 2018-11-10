@@ -1,0 +1,6 @@
+.App-shutter-button {
+	position: fixed;
+	bottom: 1em;
+	left: 50%;
+	transform: translateX(-50%);
+}

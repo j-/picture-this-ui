@@ -29,3 +29,34 @@ export interface ActionRequestCameraError extends Action {
 export const isActionRequestCameraError = (action: Action): action is ActionRequestCameraError => (
 	action.type === 'RequestCameraError'
 );
+
+export interface ActionSetRef extends Action {
+	type: 'SetRef';
+	data: {
+		name: string;
+		element: HTMLElement;
+	};
+}
+
+export const isActionSetRef = (action: Action): action is ActionSetRef => (
+	action.type === 'SetRef'
+);
+
+export interface ActionSetVideoRef extends ActionSetRef {
+	data: {
+		name: 'video';
+		element: HTMLVideoElement;
+	};
+}
+
+export const isActionSetVideoRef = (action: Action): action is ActionSetVideoRef => (
+	isActionSetRef(action) && action.data.name === 'video'
+);
+
+export const setVideoRef = (element: HTMLVideoElement): ActionSetRef => ({
+	type: 'SetRef',
+	data: {
+		name: 'video',
+		element,
+	},
+});
