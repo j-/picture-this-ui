@@ -1,5 +1,7 @@
 import { Action } from 'redux';
 
+/* # Request camera */
+
 export interface ActionRequestCamera extends Action {
 	type: 'RequestCamera';
 }
@@ -7,6 +9,8 @@ export interface ActionRequestCamera extends Action {
 export const isActionRequestCamera = (action: Action): action is ActionRequestCamera => (
 	action.type === 'RequestCamera'
 );
+
+/* ## Request camera success */
 
 export interface ActionRequestCameraSuccess extends Action {
 	type: 'RequestCameraSuccess';
@@ -19,6 +23,8 @@ export const isActionRequestCameraSuccess = (action: Action): action is ActionRe
 	action.type === 'RequestCameraSuccess'
 );
 
+/* ## Request camera error */
+
 export interface ActionRequestCameraError extends Action {
 	type: 'RequestCameraError';
 	data: {
@@ -29,6 +35,8 @@ export interface ActionRequestCameraError extends Action {
 export const isActionRequestCameraError = (action: Action): action is ActionRequestCameraError => (
 	action.type === 'RequestCameraError'
 );
+
+/* # Set ref */
 
 export interface ActionSetRef extends Action {
 	type: 'SetRef';
@@ -41,6 +49,8 @@ export interface ActionSetRef extends Action {
 export const isActionSetRef = (action: Action): action is ActionSetRef => (
 	action.type === 'SetRef'
 );
+
+/* ## Set video ref */
 
 export interface ActionSetVideoRef extends ActionSetRef {
 	data: {
