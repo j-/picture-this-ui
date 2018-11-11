@@ -36,41 +36,6 @@ export const isActionRequestCameraError = (action: Action): action is ActionRequ
 	action.type === 'RequestCameraError'
 );
 
-/* # Set ref */
-
-export interface ActionSetRef extends Action {
-	type: 'SetRef';
-	data: {
-		name: string;
-		element: HTMLElement;
-	};
-}
-
-export const isActionSetRef = (action: Action): action is ActionSetRef => (
-	action.type === 'SetRef'
-);
-
-/* ## Set video ref */
-
-export interface ActionSetVideoRef extends ActionSetRef {
-	data: {
-		name: 'video';
-		element: HTMLVideoElement;
-	};
-}
-
-export const isActionSetVideoRef = (action: Action): action is ActionSetVideoRef => (
-	isActionSetRef(action) && action.data.name === 'video'
-);
-
-export const setVideoRef = (element: HTMLVideoElement): ActionSetRef => ({
-	type: 'SetRef',
-	data: {
-		name: 'video',
-		element,
-	},
-});
-
 /* # Send photo */
 
 /* ## Send photo error */

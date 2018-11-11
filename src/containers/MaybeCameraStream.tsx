@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { connect, MapStateToProps } from 'react-redux';
 import Maybe from '../components/Maybe';
-import CameraStream from './CameraStream';
+import VideoContainer from '../components/VideoContainer';
 import { RootReducerState, hasCameraUrl } from '../store';
 
 interface StateProps {
@@ -14,7 +14,7 @@ interface OwnProps {
 
 const mapStateToProps: MapStateToProps<StateProps, OwnProps, RootReducerState> = (state) => ({
 	condition: hasCameraUrl(state),
-	children: <CameraStream />,
+	children: <VideoContainer />,
 });
 
 const mapDispatchToProps = {};
