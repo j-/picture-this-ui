@@ -5,7 +5,7 @@ export interface Props extends React.HTMLAttributes<HTMLDivElement> {
 
 }
 
-const ErrorMessage: React.StatelessComponent<Props> = (props) => (
+const ErrorMessage: React.FunctionComponent<Props> = (props) => (
 	<div className="ErrorMessage" {...props} />
 );
 

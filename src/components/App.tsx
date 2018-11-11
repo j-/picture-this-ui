@@ -5,7 +5,7 @@ import MaybeCameraStream from '../containers/MaybeCameraStream';
 import ShutterButton from '../containers/ShutterButton';
 import './App.css';
 
-const App: React.StatelessComponent = () => (
+const App: React.FunctionComponent = () => (
 	<div className="App">
 		<div className="App-error-message-container">
 			<MaybeCameraErrorMessage />

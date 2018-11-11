@@ -4,7 +4,7 @@ export interface Props {
 	condition?: any;
 }
 
-const Maybe: React.StatelessComponent<Props> = ({ condition, children }) => (
+const Maybe: React.FunctionComponent<Props> = ({ condition, children }) => (
 	<>{condition ? children : null}</>
 );
 

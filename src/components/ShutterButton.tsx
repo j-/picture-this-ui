@@ -5,7 +5,7 @@ export interface Props extends React.ButtonHTMLAttributes<HTMLButtonElement> {
 
 }
 
-const ShutterButton: React.StatelessComponent<Props> = (props) => (
+const ShutterButton: React.FunctionComponent<Props> = (props) => (
 	<button
 		className="ShutterButton"
 		type="button"
