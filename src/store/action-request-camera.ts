@@ -33,6 +33,7 @@ export const requestCamera = (): ActionRequestCamera => async (dispatch) => {
   } catch (err) {
     // "Requested device not found" (Chrome) Desktop with no camera
     // "Cannot read property 'getUserMedia' of undefined" (Chrome) Served over HTTP
+    // "Permission dismissed" (Chrome Android) Pressed 'back' button when prompted
     dispatch<ActionRequestCameraError>({
       type: ACTION_REQUEST_CAMERA_ERROR,
       data: {
