@@ -17,10 +17,12 @@ const store = createStore(rootReducer, composeWithDevTools(
 ));
 
 (async () => {
-  const status = await store.dispatch(queryPermission());
-  status.addEventListener('change', () => {
-    store.dispatch(changePermission(status.state));
-  });
+  try {
+    const status = await store.dispatch(queryPermission());
+    status.addEventListener('change', () => {
+      store.dispatch(changePermission(status.state));
+    });
+  } catch (err) {}
 })();
 
 ReactDOM.render(

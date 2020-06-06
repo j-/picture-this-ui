@@ -25,6 +25,12 @@ export const queryPermission = (): ActionQueryPermission => async (dispatch) => 
     type: ACTION_QUERY_PERMISSION_START,
   });
   try {
+    if (
+      typeof navigator.permissions === 'undefined' ||
+      typeof navigator.permissions.query !== 'function'
+    ) {
+      throw new Error('Navigator permission query API not available');
+    }
     const status = await navigator.permissions.query({ name: 'camera' });
     const state = status.state;
     if (
