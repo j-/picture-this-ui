@@ -6,20 +6,20 @@ export interface Props extends React.VideoHTMLAttributes<HTMLVideoElement> {
 }
 
 export default class VideoContainer extends React.Component<Props> {
-	private container: HTMLDivElement;
+  private container: HTMLDivElement;
 
-	componentDidMount () {
-		this.container.appendChild(
-			getVideoElement()
-		);
-	}
+  componentDidMount () {
+    this.container.appendChild(
+      getVideoElement()
+    );
+  }
 
-	render () {
-		return (
-			<div
-				className="VideoContainer"
-				ref={(el) => this.container = el as HTMLDivElement}
-			/>
-		);
-	}
+  render () {
+    return (
+      <div
+        className="VideoContainer"
+        ref={(el) => this.container = el as HTMLDivElement}
+      />
+    );
+  }
 }

@@ -1,39 +1,39 @@
 import { Reducer } from 'redux';
 
 import {
-	isActionRequestCameraSuccess,
-	isActionRequestCameraError,
+  isActionRequestCameraSuccess,
+  isActionRequestCameraError,
 } from './actions';
 
 export interface ReducerState {
-	error: string | null;
-	url: string | null;
+  error: string | null;
+  url: string | null;
 }
 
 export const DEFAULT_STATE: ReducerState = {
-	error: null,
-	url: null,
+  error: null,
+  url: null,
 };
 
 const reducer: Reducer<ReducerState> = (state = DEFAULT_STATE, action) => {
-	if (isActionRequestCameraSuccess(action)) {
-		const { stream } = action.data;
-		const url = URL.createObjectURL(stream);
-		return {
-			...state,
-			url,
-		};
-	}
+  if (isActionRequestCameraSuccess(action)) {
+    const { stream } = action.data;
+    const url = URL.createObjectURL(stream);
+    return {
+      ...state,
+      url,
+    };
+  }
 
-	if (isActionRequestCameraError(action)) {
-		const { message } = action.data;
-		return {
-			...state,
-			error: message,
-		};
-	}
+  if (isActionRequestCameraError(action)) {
+    const { message } = action.data;
+    return {
+      ...state,
+      error: message,
+    };
+  }
 
-	return state;
+  return state;
 };
 
 export default reducer;

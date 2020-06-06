@@ -6,7 +6,7 @@ export interface Props extends React.HTMLAttributes<HTMLDivElement> {
 }
 
 const ErrorMessage: React.FunctionComponent<Props> = (props) => (
-	<div className="ErrorMessage" {...props} />
+  <div className="ErrorMessage" {...props} />
 );
 
 export default ErrorMessage;

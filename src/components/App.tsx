@@ -6,16 +6,16 @@ import ShutterButton from '../containers/ShutterButton';
 import './App.css';
 
 const App: React.FunctionComponent = () => (
-	<div className="App">
-		<div className="App-error-message-container">
-			<MaybeCameraErrorMessage />
-			<MaybeSendPhotoErrorMessage />
-		</div>
-		<MaybeCameraStream />
-		<div className="App-shutter-button">
-			<ShutterButton />
-		</div>
-	</div>
+  <div className="App">
+    <div className="App-error-message-container">
+      <MaybeCameraErrorMessage />
+      <MaybeSendPhotoErrorMessage />
+    </div>
+    <MaybeCameraStream />
+    <div className="App-shutter-button">
+      <ShutterButton />
+    </div>
+  </div>
 );
 
 export default App;

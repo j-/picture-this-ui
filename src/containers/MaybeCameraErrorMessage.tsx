@@ -5,7 +5,7 @@ import ErrorMessage from '../components/ErrorMessage';
 import { RootReducerState, isCameraError, getCameraError } from '../store';
 
 interface StateProps {
-	condition?: any;
+  condition?: any;
 }
 
 interface OwnProps {
@@ -13,17 +13,17 @@ interface OwnProps {
 }
 
 const mapStateToProps: MapStateToProps<StateProps, OwnProps, RootReducerState> = (state) => ({
-	condition: isCameraError(state),
-	children: (
-		<ErrorMessage>
-			{getCameraError(state) as string}
-		</ErrorMessage>
-	),
+  condition: isCameraError(state),
+  children: (
+    <ErrorMessage>
+      {getCameraError(state) as string}
+    </ErrorMessage>
+  ),
 });
 
 const mapDispatchToProps = {};
 
 export default connect(
-	mapStateToProps,
-	mapDispatchToProps,
+  mapStateToProps,
+  mapDispatchToProps,
 )(Maybe);

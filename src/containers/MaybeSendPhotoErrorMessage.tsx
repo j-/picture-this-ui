@@ -5,7 +5,7 @@ import ErrorMessage from '../components/ErrorMessage';
 import { RootReducerState, isSendPhotoError, getSendPhotoError } from '../store';
 
 interface StateProps {
-	condition?: any;
+  condition?: any;
 }
 
 interface OwnProps {
@@ -13,17 +13,17 @@ interface OwnProps {
 }
 
 const mapStateToProps: MapStateToProps<StateProps, OwnProps, RootReducerState> = (state) => ({
-	condition: isSendPhotoError(state),
-	children: (
-		<ErrorMessage>
-			{getSendPhotoError(state) as string}
-		</ErrorMessage>
-	),
+  condition: isSendPhotoError(state),
+  children: (
+    <ErrorMessage>
+      {getSendPhotoError(state) as string}
+    </ErrorMessage>
+  ),
 });
 
 const mapDispatchToProps = {};
 
 export default connect(
-	mapStateToProps,
-	mapDispatchToProps,
+  mapStateToProps,
+  mapDispatchToProps,
 )(Maybe);

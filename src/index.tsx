@@ -12,26 +12,26 @@ import './index.css';
 import { setDimensions, setSource } from './video';
 
 const store = createStore(rootReducer, composeWithDevTools(
-	applyMiddleware(thunk),
+  applyMiddleware(thunk),
 ));
 
 store.dispatch(requestCamera());
 
 store.subscribe(() => {
-	const state = store.getState();
-	const width = getScreenInnerWidth(state);
-	const height = getScreenInnerHeight(state);
-	const url = getCameraUrl(state);
-	setDimensions(width, height);
-	if (url) {
-		setSource(url);
-	}
+  const state = store.getState();
+  const width = getScreenInnerWidth(state);
+  const height = getScreenInnerHeight(state);
+  const url = getCameraUrl(state);
+  setDimensions(width, height);
+  if (url) {
+    setSource(url);
+  }
 });
 
 ReactDOM.render(
-	<StoreProvider store={store}>
-		<App />
-	</StoreProvider>,
-	document.getElementById('root') as HTMLElement
+  <StoreProvider store={store}>
+    <App />
+  </StoreProvider>,
+  document.getElementById('root') as HTMLElement
 );
 registerServiceWorker();

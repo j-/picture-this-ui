@@ -5,7 +5,7 @@ import VideoContainer from '../components/VideoContainer';
 import { RootReducerState, hasCameraUrl } from '../store';
 
 interface StateProps {
-	condition?: any;
+  condition?: any;
 }
 
 interface OwnProps {
@@ -13,13 +13,13 @@ interface OwnProps {
 }
 
 const mapStateToProps: MapStateToProps<StateProps, OwnProps, RootReducerState> = (state) => ({
-	condition: hasCameraUrl(state),
-	children: <VideoContainer />,
+  condition: hasCameraUrl(state),
+  children: <VideoContainer />,
 });
 
 const mapDispatchToProps = {};
 
 export default connect(
-	mapStateToProps,
-	mapDispatchToProps,
+  mapStateToProps,
+  mapDispatchToProps,
 )(Maybe);
