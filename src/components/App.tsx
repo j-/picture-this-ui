@@ -39,7 +39,7 @@ const App: React.FC = () => {
       </dl>
       <dl>
         <dt>Devices</dt>
-        {devices ? <dd><Devices devices={devices} /></dd> : <em>N/A</em>}
+        {devices ? <Devices devices={devices} /> : <dd><em>N/A</em></dd>}
       </dl>
       <button type="button" onClick={handleClickRequest}>
         Request camera
