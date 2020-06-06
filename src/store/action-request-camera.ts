@@ -18,7 +18,9 @@ type A = (
   ActionRequestCameraSuccess
 )
 
-export const requestCamera = (): ThunkAction<R, S, E, A> => async (dispatch) => {
+export type ActionRequestCamera = ThunkAction<R, S, E, A>
+
+export const requestCamera = (): ActionRequestCamera => async (dispatch) => {
   dispatch<ActionRequestCameraStart>({
     type: ACTION_REQUEST_CAMERA_START,
   });

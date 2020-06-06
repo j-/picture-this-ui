@@ -18,7 +18,9 @@ type A = (
   ActionQueryPermissionSuccess
 )
 
-export const queryPermission = (): ThunkAction<R, S, E, A> => async (dispatch) => {
+export type ActionQueryPermission = ThunkAction<R, S, E, A>
+
+export const queryPermission = (): ActionQueryPermission => async (dispatch) => {
   dispatch<ActionQueryPermissionStart>({
     type: ACTION_QUERY_PERMISSION_START,
   });
