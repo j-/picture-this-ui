@@ -13,7 +13,6 @@ export interface RootReducerState {
   cameraPermission: null | 'denied' | 'granted' | 'prompt';
   isRequestingCamera: boolean;
   requestCameraError: string | null;
-  cameraURL: string | null;
 }
 
 export const DEFAULT_STATE: RootReducerState = {
@@ -21,7 +20,6 @@ export const DEFAULT_STATE: RootReducerState = {
   cameraPermission: null,
   isRequestingCamera: false,
   requestCameraError: null,
-  cameraURL: null,
 };
 
 export const reducer: Reducer = (state = DEFAULT_STATE, action) => {
@@ -71,4 +69,3 @@ export const getDevices = (state: RootReducerState) => state.devices;
 export const getCameraPermission = (state: RootReducerState) => state.cameraPermission;
 export const isRequestingCamera = (state: RootReducerState) => state.isRequestingCamera;
 export const getCameraError = (state: RootReducerState) => state.requestCameraError;
-export const getCameraURL = (state: RootReducerState) => state.cameraURL;

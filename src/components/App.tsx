@@ -1,7 +1,7 @@
 import React from 'react';
 import { AnyAction } from 'redux';
 import { useSelector, useDispatch } from 'react-redux';
-import { getDevices, getCameraPermission, isRequestingCamera, getCameraURL, getCameraError, RootReducerState } from '../store';
+import { getDevices, getCameraPermission, isRequestingCamera, getCameraError, RootReducerState } from '../store';
 import { requestCamera } from '../store/action-request-camera';
 import { ThunkDispatch } from 'redux-thunk';
 import Devices from './Devices';
@@ -12,7 +12,6 @@ const App: React.FC = () => {
   const devices = useSelector(getDevices);
   const cameraPermission = useSelector(getCameraPermission);
   const requestingCamera = useSelector(isRequestingCamera);
-  const cameraURL = useSelector(getCameraURL);
   const cameraError = useSelector(getCameraError);
   const handleClickRequest: React.MouseEventHandler = async (e) => {
     e.preventDefault();
@@ -33,10 +32,6 @@ const App: React.FC = () => {
       <dl>
         <dt>Requesting camera</dt>
         <dd><code>{String(requestingCamera)}</code></dd>
-      </dl>
-      <dl>
-        <dt>Camera URL</dt>
-        <dd><code>{cameraURL || <em>N/A</em>}</code></dd>
       </dl>
       <dl>
         <dt>Camera error</dt>
