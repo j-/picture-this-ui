@@ -9,7 +9,7 @@ import {
   ActionRequestCameraSuccess,
 } from './actions';
 
-type R = Promise<void>
+type R = Promise<MediaStream>
 type S = RootReducerState
 type E = void
 type A = (
@@ -24,19 +24,19 @@ export const requestCamera = (): ThunkAction<R, S, E, A> => async (dispatch) => 
   });
   try {
     const stream = await navigator.mediaDevices.getUserMedia({ video: true });
-    const streamURL = URL.createObjectURL(stream);
     dispatch<ActionRequestCameraSuccess>({
       type: ACTION_REQUEST_CAMERA_SUCCESS,
-      data: {
-        streamURL,
-      },
     });
+    return stream;
   } catch (err) {
+    // "Requested device not found" (Chrome) Desktop with no camera
+    // "Cannot read property 'getUserMedia' of undefined" (Chrome) Served over HTTP
     dispatch<ActionRequestCameraError>({
       type: ACTION_REQUEST_CAMERA_ERROR,
       data: {
         message: err.message,
       },
     });
+    throw err;
   }
 };

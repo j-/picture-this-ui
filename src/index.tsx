@@ -3,12 +3,25 @@ import ReactDOM from 'react-dom';
 import App from './components/App';
 import * as serviceWorker from './serviceWorker';
 import { createStore, applyMiddleware } from 'redux';
-import rootReducer from './store';
+import rootReducer, { RootReducerState } from './store';
 import { composeWithDevTools } from 'redux-devtools-extension';
-import thunk from 'redux-thunk';
+import thunk, { ThunkMiddleware } from 'redux-thunk';
 import { Provider as StoreProvider } from 'react-redux';
+import { queryPermission } from './store/action-query-permission';
+import { changePermission } from './store/actions';
 
-const store = createStore(rootReducer, composeWithDevTools(applyMiddleware(thunk)));
+const store = createStore(rootReducer, composeWithDevTools(
+  applyMiddleware(
+    thunk as ThunkMiddleware<RootReducerState>,
+  ),
+));
+
+(async () => {
+  const status = await store.dispatch(queryPermission());
+  status.addEventListener('change', () => {
+    store.dispatch(changePermission(status.state));
+  });
+})();
 
 ReactDOM.render(
   <React.StrictMode>
