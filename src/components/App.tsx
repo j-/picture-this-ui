@@ -43,6 +43,7 @@ const App: React.FC = () => {
       <button type="button" onClick={handleClickRequest}>
         Request camera
       </button>
+      <br />
       <video width={300} height={300} ref={videoRef} />
     </div>
   );
