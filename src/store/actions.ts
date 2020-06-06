@@ -92,3 +92,41 @@ export const changePermission = (state: 'denied' | 'granted' | 'prompt') => ({
     state,
   },
 });
+
+/* Enumerate devices start */
+
+export const ACTION_ENUMERATE_DEVICES_START = 'ENUMERATE_DEVICES_START';
+
+export interface ActionEnumerateDevicesStart extends Action<typeof ACTION_ENUMERATE_DEVICES_START> {}
+
+export const isActionEnumerateDevicesStart = (action: Action): action is ActionEnumerateDevicesStart => (
+  action.type === ACTION_ENUMERATE_DEVICES_START
+);
+
+/* Enumerate devices success */
+
+export const ACTION_ENUMERATE_DEVICES_SUCCESS = 'ENUMERATE_DEVICES_SUCCESS';
+
+export interface ActionEnumerateDevicesSuccess extends Action<typeof ACTION_ENUMERATE_DEVICES_SUCCESS> {
+  data: {
+    devices: MediaDeviceInfo[];
+  };
+}
+
+export const isActionEnumerateDevicesSuccess = (action: Action): action is ActionEnumerateDevicesSuccess => (
+  action.type === ACTION_ENUMERATE_DEVICES_SUCCESS
+);
+
+/* Enumerate devices error */
+
+export const ACTION_ENUMERATE_DEVICES_ERROR = 'ENUMERATE_DEVICES_ERROR';
+
+export interface ActionEnumerateDevicesError extends Action<typeof ACTION_ENUMERATE_DEVICES_ERROR> {
+  data: {
+    message: string;
+  };
+}
+
+export const isActionEnumerateDevicesError = (action: Action): action is ActionEnumerateDevicesError => (
+  action.type === ACTION_ENUMERATE_DEVICES_ERROR
+);

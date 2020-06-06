@@ -8,6 +8,7 @@ import { composeWithDevTools } from 'redux-devtools-extension';
 import thunk, { ThunkMiddleware } from 'redux-thunk';
 import { Provider as StoreProvider } from 'react-redux';
 import { queryPermission } from './store/action-query-permission';
+import { enumerateDevices } from './store/action-enumerate-devices';
 import { changePermission } from './store/actions';
 
 const store = createStore(rootReducer, composeWithDevTools(
@@ -22,6 +23,12 @@ const store = createStore(rootReducer, composeWithDevTools(
     status.addEventListener('change', () => {
       store.dispatch(changePermission(status.state));
     });
+  } catch (err) {}
+})();
+
+(async () => {
+  try {
+    await store.dispatch(enumerateDevices());
   } catch (err) {}
 })();
 
