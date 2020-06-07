@@ -14,6 +14,7 @@ import Capture from './ButtonCapture';
 import RequestUserCamera from './ButtonRequestUserCamera';
 import RequestEnvironmentCamera from './ButtonRequestEnvironmentCamera';
 import CancelRequest from './ButtonCancelRequest';
+import CancelOnPageHidden from './CancelOnPageHidden';
 
 const App: React.FC = () => {
   const devices = useSelector(getDevices);
@@ -23,6 +24,8 @@ const App: React.FC = () => {
   const cameraError = useSelector(getCameraError);
   return (
     <div className="App">
+      <CancelOnPageHidden />
+
       <dl>
         <dt>Camera permission</dt>
         <dd><code>{cameraPermission || <em>N/A</em>}</code></dd>
