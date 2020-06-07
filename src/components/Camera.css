@@ -15,7 +15,7 @@
   left: 0;
   z-index: -1;
   background: #ddd url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 2 2'%3E%3Crect x='0' y='0' width='1' height='1' fill='%23fff' stroke='none' /%3E%3Crect x='1' y='1' width='50' height='50' fill='%23fff' stroke='none' /%3E%3C/svg%3E") 0 0/1em local;
-  transform: rotate(-10deg) scale(1.15);
+  transform: rotate(-10deg) scale(1.1584559306791384);
   animation: scroll-bg 2s linear infinite;
 }
 
