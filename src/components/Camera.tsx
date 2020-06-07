@@ -14,7 +14,7 @@ const Camera: React.FC = ({ children }) => {
 
   return (
     <div className="Camera">
-      <video className="Camera-video" width={300} height={300} autoPlay={true} ref={videoRef} />
+      <video className="Camera-video" autoPlay={true} ref={videoRef} />
       {children}
     </div>
   );
