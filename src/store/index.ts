@@ -10,6 +10,7 @@ import {
 } from './actions';
 
 export interface RootReducerState {
+  version: undefined | string;
   devices: null | MediaDeviceInfo[];
   videoInputDeviceCount: null | number;
   cameraPermission: null | 'denied' | 'granted' | 'prompt';
@@ -19,6 +20,7 @@ export interface RootReducerState {
 }
 
 export const DEFAULT_STATE: RootReducerState = {
+  version: process.env.REACT_APP_VERSION,
   devices: null,
   videoInputDeviceCount: null,
   cameraPermission: null,
