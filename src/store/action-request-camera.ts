@@ -25,6 +25,12 @@ export const requestCamera = (): ActionRequestCamera => async (dispatch) => {
     type: ACTION_REQUEST_CAMERA_START,
   });
   try {
+    if (
+      typeof navigator.mediaDevices === 'undefined' ||
+      typeof navigator.mediaDevices.getUserMedia !== 'function'
+    ) {
+      throw new Error('Navigator get user media API not available');
+    }
     const stream = await navigator.mediaDevices.getUserMedia({ video: true });
     dispatch<ActionRequestCameraSuccess>({
       type: ACTION_REQUEST_CAMERA_SUCCESS,
