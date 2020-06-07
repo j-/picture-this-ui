@@ -2,12 +2,10 @@ import * as React from 'react';
 import {
   getCameraError,
   getCameraPermission,
-  getDevices,
   getVideoInputDeviceCount,
   isRequestingCamera,
   useSelector,
 } from '../store';
-import Devices from './Devices';
 import Camera from './Camera';
 import Gallery from './Gallery';
 import Capture from './ButtonCapture';
@@ -17,7 +15,6 @@ import CancelRequest from './ButtonCancelRequest';
 import CancelOnPageHidden from './CancelOnPageHidden';
 
 const App: React.FC = () => {
-  const devices = useSelector(getDevices);
   const videoInputDeviceCount = useSelector(getVideoInputDeviceCount);
   const cameraPermission = useSelector(getCameraPermission);
   const requestingCamera = useSelector(isRequestingCamera);
@@ -41,7 +38,6 @@ const App: React.FC = () => {
       <dl>
         <dt>Video input devices</dt>
         <dd>{videoInputDeviceCount} device(s)</dd>
-        {devices ? <Devices devices={devices} /> : <dd><em>N/A</em></dd>}
       </dl>
       <input type="file" accept="image/*;capture=camera" />
       <br />
