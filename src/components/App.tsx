@@ -13,12 +13,21 @@ import RequestUserCamera from './ButtonRequestUserCamera';
 import RequestEnvironmentCamera from './ButtonRequestEnvironmentCamera';
 import CancelRequest from './ButtonCancelRequest';
 import CancelOnPageHidden from './CancelOnPageHidden';
+import Flash from './Flash';
 
 const App: React.FC = () => {
   const videoInputDeviceCount = useSelector(getVideoInputDeviceCount);
   const cameraPermission = useSelector(getCameraPermission);
   const requestingCamera = useSelector(isRequestingCamera);
   const cameraError = useSelector(getCameraError);
+
+  const flashRef = React.useRef<{ start: () => void }>();
+  const handleClickCapture = () => {
+    const flash = flashRef.current;
+    if (!flash) return;
+    flash.start();
+  };
+
   return (
     <div className="App">
       <CancelOnPageHidden />
@@ -50,9 +59,11 @@ const App: React.FC = () => {
         Close camera
       </CancelRequest>
       <br />
-      <Camera />
+      <Camera>
+        <Flash ref={flashRef} />
+      </Camera>
       <br />
-      <Capture>
+      <Capture onTouchStart={handleClickCapture}>
         Capture
       </Capture>
       <Gallery />
