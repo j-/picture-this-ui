@@ -1,51 +1,25 @@
 import React from 'react';
-import { AnyAction } from 'redux';
-import { useSelector, useDispatch } from 'react-redux';
+import { useSelector } from 'react-redux';
 import {
   getCameraError,
   getCameraPermission,
   getDevices,
   getVideoInputDeviceCount,
   isRequestingCamera,
-  RootReducerState,
 } from '../store';
-import { requestCamera, capture } from '../store/actions';
-import { ThunkDispatch } from 'redux-thunk';
 import Devices from './Devices';
-import { useStream, useVideo } from './Stream';
 import Camera from './Camera';
 import Gallery from './Gallery';
+import Capture from './ButtonCapture';
+import RequestUserCamera from './ButtonRequestUserCamera';
+import RequestEnvironmentCamera from './ButtonRequestEnvironmentCamera';
 
 const App: React.FC = () => {
-  const dispatch: ThunkDispatch<RootReducerState, void, AnyAction> = useDispatch();
   const devices = useSelector(getDevices);
   const videoInputDeviceCount = useSelector(getVideoInputDeviceCount);
   const cameraPermission = useSelector(getCameraPermission);
   const requestingCamera = useSelector(isRequestingCamera);
   const cameraError = useSelector(getCameraError);
-  const [stream, setStream] = useStream();
-  const video = useVideo();
-  const handleClickRequestUser: React.MouseEventHandler = async (e) => {
-    e.preventDefault();
-    try {
-      const stream = await dispatch(requestCamera('user'));
-      setStream(stream);
-    } catch (err) {}
-  };
-  const handleClickRequestEnvironment: React.MouseEventHandler = async (e) => {
-    e.preventDefault();
-    try {
-      const stream = await dispatch(requestCamera('environment'));
-      setStream(stream);
-    } catch (err) {}
-  };
-  const handleClickCapture: React.MouseEventHandler = async (e) => {
-    e.preventDefault();
-    try {
-      if (!video) throw new Error('Expected video element');
-      await dispatch(capture(video));
-    } catch (err) {}
-  };
   return (
     <div className="App">
       <dl>
@@ -65,18 +39,18 @@ const App: React.FC = () => {
         <dd>{videoInputDeviceCount} device(s)</dd>
         {devices ? <Devices devices={devices} /> : <dd><em>N/A</em></dd>}
       </dl>
-      <button type="button" onClick={handleClickRequestUser}>
+      <RequestUserCamera>
         Request user camera
-      </button>
-      <button type="button" onClick={handleClickRequestEnvironment}>
+      </RequestUserCamera>
+      <RequestEnvironmentCamera>
         Request environment camera
-      </button>
+      </RequestEnvironmentCamera>
       <br />
-      {stream && <Camera stream={stream} />}
+      <Camera />
       <br />
-      <button type="button" onClick={handleClickCapture}>
+      <Capture>
         Capture
-      </button>
+      </Capture>
       <Gallery />
     </div>
   );

@@ -1,15 +1,13 @@
 import * as React from 'react';
+import { useStream } from './Stream';
 
-export interface Props {
-  stream: MediaStream;
-}
-
-const Camera: React.FC<Props> = ({ stream }) => {
+const Camera: React.FC = () => {
   const videoRef = React.useRef<HTMLVideoElement>(null);
+  const [stream] = useStream();
 
   React.useEffect(() => {
     const video = videoRef.current;
-    if (!video) return;
+    if (!video || !stream) return;
     video.autoplay = true;
     video.srcObject = stream;
   }, [stream]);
