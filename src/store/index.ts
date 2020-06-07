@@ -9,6 +9,9 @@ import {
   isActionCaptureImage,
 } from './actions';
 
+export * from './use-dispatch';
+export * from './use-selector';
+
 export interface RootReducerState {
   version: undefined | string;
   devices: null | MediaDeviceInfo[];

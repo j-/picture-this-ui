@@ -1,11 +1,11 @@
 import * as React from 'react';
-import { useSelector } from 'react-redux';
 import {
   getCameraError,
   getCameraPermission,
   getDevices,
   getVideoInputDeviceCount,
   isRequestingCamera,
+  useSelector,
 } from '../store';
 import Devices from './Devices';
 import Camera from './Camera';

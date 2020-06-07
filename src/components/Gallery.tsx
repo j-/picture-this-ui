@@ -1,6 +1,5 @@
 import * as React from 'react';
-import { useSelector } from 'react-redux';
-import { getCaptures } from '../store';
+import { useSelector, getCaptures } from '../store';
 
 const Gallery: React.FC = () => {
   const captures = useSelector(getCaptures);
