@@ -2,7 +2,7 @@ import * as React from 'react';
 
 export type StreamType = MediaStream | null
 export type VideoType = HTMLVideoElement | null
-export type SetStreamType = (stream: MediaStream) => void
+export type SetStreamType = (stream: StreamType) => void
 
 export interface StreamContextType {
   stream: StreamType;
