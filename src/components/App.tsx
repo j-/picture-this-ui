@@ -7,7 +7,6 @@ import {
   useSelector,
 } from '../store';
 import Camera from './Camera';
-import Gallery from './Gallery';
 import Capture from './ButtonCapture';
 import RequestUserCamera from './ButtonRequestUserCamera';
 import RequestEnvironmentCamera from './ButtonRequestEnvironmentCamera';
@@ -48,8 +47,6 @@ const App: React.FC = () => {
         <Flash ref={flashRef} />
         <Capture onTouchStart={handleClickCapture} />
       </Camera>
-
-      <Gallery />
     </div>
   );
 }
