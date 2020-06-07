@@ -32,16 +32,7 @@ const App: React.FC = () => {
     <div className="App">
       <CancelOnPageHidden />
 
-      <dl>
-        <dt>Camera permission</dt>
-        <dd><code>{cameraPermission || <em>N/A</em>}</code></dd>
-        <dt>Requesting camera</dt>
-        <dd><code>{String(requestingCamera)}</code></dd>
-        <dt>Camera error</dt>
-        <dd><code>{cameraError || <em>N/A</em>}</code></dd>
-        <dt>Video input devices</dt>
-        <dd>{videoInputDeviceCount} device(s)</dd>
-      </dl>
+      <code>{videoInputDeviceCount} device(s). {cameraPermission || 'unknown'}. {String(requestingCamera)}. {cameraError || 'none'}.</code><br />
 
       <RequestUserCamera>
         Request user camera
