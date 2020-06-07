@@ -39,7 +39,6 @@ const App: React.FC = () => {
         <dt>Video input devices</dt>
         <dd>{videoInputDeviceCount} device(s)</dd>
       </dl>
-      <input type="file" accept="image/*;capture=camera" />
       <br />
       <RequestUserCamera>
         Request user camera
