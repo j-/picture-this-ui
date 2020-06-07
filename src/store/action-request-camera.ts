@@ -20,7 +20,7 @@ type A = (
 
 export type ActionRequestCamera = ThunkAction<R, S, E, A>
 
-export const requestCamera = (): ActionRequestCamera => async (dispatch) => {
+export const requestCamera = (facingMode: VideoFacingModeEnum = 'environment'): ActionRequestCamera => async (dispatch) => {
   dispatch<ActionRequestCameraStart>({
     type: ACTION_REQUEST_CAMERA_START,
   });
@@ -31,7 +31,11 @@ export const requestCamera = (): ActionRequestCamera => async (dispatch) => {
     ) {
       throw new Error('Navigator get user media API not available');
     }
-    const stream = await navigator.mediaDevices.getUserMedia({ video: true });
+    const stream = await navigator.mediaDevices.getUserMedia({
+      video: {
+        facingMode,
+      },
+    });
     dispatch<ActionRequestCameraSuccess>({
       type: ACTION_REQUEST_CAMERA_SUCCESS,
     });

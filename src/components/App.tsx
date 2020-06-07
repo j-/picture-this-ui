@@ -23,10 +23,17 @@ const App: React.FC = () => {
   const requestingCamera = useSelector(isRequestingCamera);
   const cameraError = useSelector(getCameraError);
   const [stream, setStream] = useStream();
-  const handleClickRequest: React.MouseEventHandler = async (e) => {
+  const handleClickRequestUser: React.MouseEventHandler = async (e) => {
     e.preventDefault();
     try {
-      const stream = await dispatch(requestCamera());
+      const stream = await dispatch(requestCamera('user'));
+      setStream(stream);
+    } catch (err) {}
+  };
+  const handleClickRequestEnvironment: React.MouseEventHandler = async (e) => {
+    e.preventDefault();
+    try {
+      const stream = await dispatch(requestCamera('environment'));
       setStream(stream);
     } catch (err) {}
   };
@@ -49,8 +56,11 @@ const App: React.FC = () => {
         <dd>{videoInputDeviceCount} device(s)</dd>
         {devices ? <Devices devices={devices} /> : <dd><em>N/A</em></dd>}
       </dl>
-      <button type="button" onClick={handleClickRequest}>
-        Request camera
+      <button type="button" onClick={handleClickRequestUser}>
+        Request user camera
+      </button>
+      <button type="button" onClick={handleClickRequestEnvironment}>
+        Request environment camera
       </button>
       <br />
       {stream && <Camera stream={stream} />}
