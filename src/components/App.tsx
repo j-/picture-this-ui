@@ -13,6 +13,7 @@ import Gallery from './Gallery';
 import Capture from './ButtonCapture';
 import RequestUserCamera from './ButtonRequestUserCamera';
 import RequestEnvironmentCamera from './ButtonRequestEnvironmentCamera';
+import CancelRequest from './ButtonCancelRequest';
 
 const App: React.FC = () => {
   const devices = useSelector(getDevices);
@@ -45,6 +46,9 @@ const App: React.FC = () => {
       <RequestEnvironmentCamera>
         Request environment camera
       </RequestEnvironmentCamera>
+      <CancelRequest>
+        Close camera
+      </CancelRequest>
       <br />
       <Camera />
       <br />
