@@ -48,22 +48,3 @@ export const useVideo = (): VideoType => {
   const context = React.useContext(StreamContext);
   return context.video;
 };
-
-export const useCapture = () => {
-  const video = useVideo();
-  return async () => {
-    if (!video) throw new Error('Expected video');
-    const canvas = document.createElement('canvas');
-    canvas.width = video.videoWidth;
-    canvas.height = video.videoHeight;
-    const ctx = canvas.getContext('2d');
-    if (!ctx) throw new Error('Expected rendering context');
-    ctx.drawImage(video, 0, 0);
-    const capture = new Image(video.videoWidth, video.videoHeight);
-    const blob = await new Promise<Blob | null>((resolve) => canvas.toBlob(resolve));
-    if (!blob) throw new Error('Failed to create blob');
-    const url = URL.createObjectURL(blob);
-    capture.src = url;
-    return capture;
-  };
-};
