@@ -1,0 +1,10 @@
+.ButtonCapture {
+  appearance: none;
+  width: 5em;
+  height: 5em;
+  border: none;
+  border-radius: 50%;
+  background-color: #fff;
+  box-shadow: 0 0 0 2px rgba(0, 0, 0, 0.2);
+  outline: none;
+}

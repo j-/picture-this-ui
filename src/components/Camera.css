@@ -23,6 +23,13 @@
   object-fit: cover;
 }
 
+.Camera > .ButtonCapture {
+  position: absolute;
+  bottom: 10px;
+  left: 50%;
+  transform: translate(-50%, 0);
+}
+
 @keyframes scroll-bg {
   from {
     background-position: 0 0;

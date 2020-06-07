@@ -46,13 +46,8 @@ const App: React.FC = () => {
 
       <Camera>
         <Flash ref={flashRef} />
+        <Capture onTouchStart={handleClickCapture} />
       </Camera>
-
-      <br />
-
-      <Capture onTouchStart={handleClickCapture}>
-        Capture
-      </Capture>
 
       <Gallery />
     </div>

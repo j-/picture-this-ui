@@ -2,6 +2,7 @@ import * as React from 'react';
 import { useDispatch } from '../store';
 import { useVideo } from './Stream';
 import { capture } from '../store/actions';
+import './ButtonCapture.css';
 
 export interface Props extends React.ButtonHTMLAttributes<HTMLButtonElement> {}
 
@@ -19,7 +20,7 @@ const ButtonCapture: React.FC<Props> = ({ onTouchStart, ...props }) => {
   };
 
   return (
-    <button onTouchStart={handleTouchStart} {...props} />
+    <button className="ButtonCapture" onTouchStart={handleTouchStart} {...props} />
   );
 };
 
