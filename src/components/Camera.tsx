@@ -1,5 +1,6 @@
 import * as React from 'react';
 import { useStream } from './Stream';
+import './Camera.css';
 
 const Camera: React.FC = () => {
   const videoRef = React.useRef<HTMLVideoElement>(null);
@@ -7,7 +8,7 @@ const Camera: React.FC = () => {
 
   React.useEffect(() => {
     const video = videoRef.current;
-    if (!video || !stream) return;
+    if (!video) return;
     video.autoplay = true;
     video.srcObject = stream;
   }, [stream]);
