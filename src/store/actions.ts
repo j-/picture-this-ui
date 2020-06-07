@@ -1,5 +1,9 @@
 import { Action } from 'redux';
 
+export * from './action-enumerate-devices';
+export * from './action-query-permission';
+export * from './action-request-camera';
+
 /* Request camera start */
 
 export const ACTION_REQUEST_CAMERA_START = 'REQUEST_CAMERA_START';

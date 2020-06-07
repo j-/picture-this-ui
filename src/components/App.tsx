@@ -9,7 +9,7 @@ import {
   isRequestingCamera,
   RootReducerState,
 } from '../store';
-import { requestCamera } from '../store/action-request-camera';
+import { requestCamera } from '../store/actions';
 import { ThunkDispatch } from 'redux-thunk';
 import Devices from './Devices';
 

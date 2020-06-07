@@ -7,9 +7,7 @@ import rootReducer, { RootReducerState } from './store';
 import { composeWithDevTools } from 'redux-devtools-extension';
 import thunk, { ThunkMiddleware } from 'redux-thunk';
 import { Provider as StoreProvider } from 'react-redux';
-import { queryPermission } from './store/action-query-permission';
-import { enumerateDevices } from './store/action-enumerate-devices';
-import { changePermission } from './store/actions';
+import { queryPermission, changePermission, enumerateDevices } from './store/actions';
 
 const store = createStore(rootReducer, composeWithDevTools(
   applyMiddleware(
