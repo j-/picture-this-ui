@@ -6,6 +6,7 @@ import {
   isActionQueryPermissionSuccess,
   isActionChangePermission,
   isActionEnumerateDevicesSuccess,
+  isActionCaptureImage,
 } from './actions';
 
 export interface RootReducerState {
@@ -14,6 +15,7 @@ export interface RootReducerState {
   cameraPermission: null | 'denied' | 'granted' | 'prompt';
   isRequestingCamera: boolean;
   requestCameraError: null | string;
+  captures: string[];
 }
 
 export const DEFAULT_STATE: RootReducerState = {
@@ -22,6 +24,7 @@ export const DEFAULT_STATE: RootReducerState = {
   cameraPermission: null,
   isRequestingCamera: false,
   requestCameraError: null,
+  captures: [],
 };
 
 export const reducer: Reducer = (state = DEFAULT_STATE, action) => {
@@ -66,6 +69,17 @@ export const reducer: Reducer = (state = DEFAULT_STATE, action) => {
     };
   }
 
+  if (isActionCaptureImage(action)) {
+    const { imageSrc } = action.data;
+    return {
+      ...state,
+      captures: [
+        ...state.captures,
+        imageSrc,
+      ],
+    };
+  }
+
   return state;
 };
 
@@ -76,3 +90,4 @@ export const getVideoInputDeviceCount = (state: RootReducerState) => state.video
 export const getCameraPermission = (state: RootReducerState) => state.cameraPermission;
 export const isRequestingCamera = (state: RootReducerState) => state.isRequestingCamera;
 export const getCameraError = (state: RootReducerState) => state.requestCameraError;
+export const getCaptures = (state: RootReducerState) => state.captures;

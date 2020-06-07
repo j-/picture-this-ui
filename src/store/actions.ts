@@ -1,5 +1,6 @@
 import { Action } from 'redux';
 
+export * from './action-capture';
 export * from './action-enumerate-devices';
 export * from './action-query-permission';
 export * from './action-request-camera';
@@ -134,3 +135,24 @@ export interface ActionEnumerateDevicesError extends Action<typeof ACTION_ENUMER
 export const isActionEnumerateDevicesError = (action: Action): action is ActionEnumerateDevicesError => (
   action.type === ACTION_ENUMERATE_DEVICES_ERROR
 );
+
+/* Capture image */
+
+export const ACTION_CAPTURE_IMAGE = 'CAPTURE_IMAGE';
+
+export interface ActionCaptureImage extends Action<typeof ACTION_CAPTURE_IMAGE> {
+  data: {
+    imageSrc: string;
+  };
+}
+
+export const isActionCaptureImage = (action: Action): action is ActionCaptureImage => (
+  action.type === ACTION_CAPTURE_IMAGE
+);
+
+export const captureImage = (imageSrc: string) => ({
+  type: ACTION_CAPTURE_IMAGE,
+  data: {
+    imageSrc,
+  },
+});
