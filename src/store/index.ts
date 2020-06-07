@@ -13,7 +13,7 @@ export interface RootReducerState {
   videoInputDeviceCount: null | number;
   cameraPermission: null | 'denied' | 'granted' | 'prompt';
   isRequestingCamera: boolean;
-  requestCameraError: string | null;
+  requestCameraError: null | string;
 }
 
 export const DEFAULT_STATE: RootReducerState = {
