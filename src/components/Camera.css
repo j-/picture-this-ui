@@ -19,6 +19,10 @@
   animation: scroll-bg 2s linear infinite;
 }
 
+.Camera-video {
+  object-fit: cover;
+}
+
 @keyframes scroll-bg {
   from {
     background-position: 0 0;
