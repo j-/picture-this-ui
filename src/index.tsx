@@ -31,6 +31,14 @@ const store = createStore(rootReducer, composeWithDevTools(
   } catch (err) {}
 })();
 
+window.addEventListener('unload', () => {
+  const state = store.getState();
+  const blob = new Blob([JSON.stringify(state)], {
+    type: 'application/json; charset=UTF-8',
+  });
+  navigator.sendBeacon('/beacon', blob);
+});
+
 ReactDOM.render(
   <React.StrictMode>
     <StoreProvider store={store}>
