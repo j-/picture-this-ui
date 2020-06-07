@@ -9,13 +9,12 @@ const Camera: React.FC = () => {
   React.useEffect(() => {
     const video = videoRef.current;
     if (!video) return;
-    video.autoplay = true;
     video.srcObject = stream;
   }, [stream]);
 
   return (
     <div className="Camera">
-      <video className="Camera-video" width={300} height={300} ref={videoRef} />
+      <video className="Camera-video" width={300} height={300} autoPlay={true} ref={videoRef} />
     </div>
   );
 };
