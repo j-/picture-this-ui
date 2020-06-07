@@ -35,20 +35,14 @@ const App: React.FC = () => {
       <dl>
         <dt>Camera permission</dt>
         <dd><code>{cameraPermission || <em>N/A</em>}</code></dd>
-      </dl>
-      <dl>
         <dt>Requesting camera</dt>
         <dd><code>{String(requestingCamera)}</code></dd>
-      </dl>
-      <dl>
         <dt>Camera error</dt>
         <dd><code>{cameraError || <em>N/A</em>}</code></dd>
-      </dl>
-      <dl>
         <dt>Video input devices</dt>
         <dd>{videoInputDeviceCount} device(s)</dd>
       </dl>
-      <br />
+
       <RequestUserCamera>
         Request user camera
       </RequestUserCamera>
@@ -58,14 +52,17 @@ const App: React.FC = () => {
       <CancelRequest>
         Close camera
       </CancelRequest>
-      <br />
+
       <Camera>
         <Flash ref={flashRef} />
       </Camera>
+
       <br />
+
       <Capture onTouchStart={handleClickCapture}>
         Capture
       </Capture>
+
       <Gallery />
     </div>
   );
