@@ -10,6 +10,7 @@ import {
 
 export interface RootReducerState {
   devices: null | MediaDeviceInfo[];
+  videoInputDeviceCount: null | number;
   cameraPermission: null | 'denied' | 'granted' | 'prompt';
   isRequestingCamera: boolean;
   requestCameraError: string | null;
@@ -17,6 +18,7 @@ export interface RootReducerState {
 
 export const DEFAULT_STATE: RootReducerState = {
   devices: null,
+  videoInputDeviceCount: null,
   cameraPermission: null,
   isRequestingCamera: false,
   requestCameraError: null,
@@ -54,9 +56,13 @@ export const reducer: Reducer = (state = DEFAULT_STATE, action) => {
   }
 
   if (isActionEnumerateDevicesSuccess(action)) {
+    const { devices } = action.data;
+    const videoInputDevices = devices.filter((device) => device.kind === 'videoinput');
+    const videoInputDeviceCount = videoInputDevices.length;
     return {
       ...state,
-      devices: action.data.devices,
+      devices,
+      videoInputDeviceCount,
     };
   }
 
@@ -66,6 +72,7 @@ export const reducer: Reducer = (state = DEFAULT_STATE, action) => {
 export default reducer;
 
 export const getDevices = (state: RootReducerState) => state.devices;
+export const getVideoInputDeviceCount = (state: RootReducerState) => state.videoInputDeviceCount;
 export const getCameraPermission = (state: RootReducerState) => state.cameraPermission;
 export const isRequestingCamera = (state: RootReducerState) => state.isRequestingCamera;
 export const getCameraError = (state: RootReducerState) => state.requestCameraError;

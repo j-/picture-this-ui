@@ -1,7 +1,14 @@
 import React from 'react';
 import { AnyAction } from 'redux';
 import { useSelector, useDispatch } from 'react-redux';
-import { getDevices, getCameraPermission, isRequestingCamera, getCameraError, RootReducerState } from '../store';
+import {
+  getCameraError,
+  getCameraPermission,
+  getDevices,
+  getVideoInputDeviceCount,
+  isRequestingCamera,
+  RootReducerState,
+} from '../store';
 import { requestCamera } from '../store/action-request-camera';
 import { ThunkDispatch } from 'redux-thunk';
 import Devices from './Devices';
@@ -10,6 +17,7 @@ const App: React.FC = () => {
   const dispatch: ThunkDispatch<RootReducerState, void, AnyAction> = useDispatch();
   const videoRef = React.useRef<HTMLVideoElement>(null);
   const devices = useSelector(getDevices);
+  const videoInputDeviceCount = useSelector(getVideoInputDeviceCount);
   const cameraPermission = useSelector(getCameraPermission);
   const requestingCamera = useSelector(isRequestingCamera);
   const cameraError = useSelector(getCameraError);
@@ -38,7 +46,8 @@ const App: React.FC = () => {
         <dd><code>{cameraError || <em>N/A</em>}</code></dd>
       </dl>
       <dl>
-        <dt>Devices</dt>
+        <dt>Video input devices</dt>
+        <dd>{videoInputDeviceCount} device(s)</dd>
         {devices ? <Devices devices={devices} /> : <dd><em>N/A</em></dd>}
       </dl>
       <button type="button" onClick={handleClickRequest}>
