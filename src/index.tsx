@@ -8,6 +8,7 @@ import { composeWithDevTools } from 'redux-devtools-extension';
 import thunk, { ThunkMiddleware } from 'redux-thunk';
 import { Provider as StoreProvider } from 'react-redux';
 import { queryPermission, changePermission, enumerateDevices } from './store/actions';
+import StreamProvider from './components/Stream';
 
 const store = createStore(rootReducer, composeWithDevTools(
   applyMiddleware(
@@ -33,7 +34,9 @@ const store = createStore(rootReducer, composeWithDevTools(
 ReactDOM.render(
   <React.StrictMode>
     <StoreProvider store={store}>
-      <App />
+      <StreamProvider>
+        <App />
+      </StreamProvider>
     </StoreProvider>
   </React.StrictMode>,
   document.getElementById('root')

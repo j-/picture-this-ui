@@ -12,23 +12,22 @@ import {
 import { requestCamera } from '../store/actions';
 import { ThunkDispatch } from 'redux-thunk';
 import Devices from './Devices';
+import { useStream } from './Stream';
+import Camera from './Camera';
 
 const App: React.FC = () => {
   const dispatch: ThunkDispatch<RootReducerState, void, AnyAction> = useDispatch();
-  const videoRef = React.useRef<HTMLVideoElement>(null);
   const devices = useSelector(getDevices);
   const videoInputDeviceCount = useSelector(getVideoInputDeviceCount);
   const cameraPermission = useSelector(getCameraPermission);
   const requestingCamera = useSelector(isRequestingCamera);
   const cameraError = useSelector(getCameraError);
+  const [stream, setStream] = useStream();
   const handleClickRequest: React.MouseEventHandler = async (e) => {
     e.preventDefault();
     try {
       const stream = await dispatch(requestCamera());
-      const video = videoRef.current;
-      if (!video) throw new Error('No video object');
-      video.autoplay = true;
-      video.srcObject = stream;
+      setStream(stream);
     } catch (err) {}
   };
   return (
@@ -54,7 +53,7 @@ const App: React.FC = () => {
         Request camera
       </button>
       <br />
-      <video width={300} height={300} ref={videoRef} />
+      {stream && <Camera stream={stream} />}
     </div>
   );
 }
