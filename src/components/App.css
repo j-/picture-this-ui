@@ -26,8 +26,19 @@
   z-index: 0;
 }
 
-.App > .Flash {
+.App > .Letterbox {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  user-select: none;
+  pointer-events: none;
   z-index: 1;
+}
+
+.App > .Flash {
+  z-index: 2;
 }
 
 .App > .ButtonCapture {
@@ -35,5 +46,10 @@
   bottom: 5vh;
   left: 50%;
   transform: translateX(-50%);
-  z-index: 2;
+  z-index: 3;
+}
+
+.App-controls {
+  position: relative;
+  z-index: 4;
 }
