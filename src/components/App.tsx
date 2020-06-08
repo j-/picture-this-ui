@@ -14,7 +14,7 @@ import CancelRequest from './ButtonCancelRequest';
 import CancelOnPageHidden from './CancelOnPageHidden';
 import Flash from './Flash';
 import BackgroundEmpty from './BackgroundEmpty';
-import Letterbox from './Letterbox';
+import Masking from './Masking';
 import './App.css';
 
 const App: React.FC = () => {
@@ -52,7 +52,7 @@ const App: React.FC = () => {
 
       <Flash ref={flashRef} />
 
-      <Letterbox />
+      <Masking />
 
       <Camera />
 
