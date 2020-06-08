@@ -9,6 +9,7 @@ import thunk, { ThunkMiddleware } from 'redux-thunk';
 import { Provider as StoreProvider } from 'react-redux';
 import { queryPermission, changePermission, enumerateDevices } from './store/actions';
 import StreamProvider from './components/Stream';
+import './styles.css';
 
 const store = createStore(rootReducer, composeWithDevTools(
   applyMiddleware(
