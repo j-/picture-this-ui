@@ -2,7 +2,7 @@ import * as React from 'react';
 import { useStream } from './Stream';
 import './Camera.css';
 
-const Camera: React.FC = ({ children }) => {
+const Camera: React.FC = () => {
   const videoRef = React.useRef<HTMLVideoElement>(null);
   const [stream] = useStream();
 
@@ -15,7 +15,6 @@ const Camera: React.FC = ({ children }) => {
   return (
     <div className="Camera">
       <video className="Camera-video" autoPlay={true} ref={videoRef} />
-      {children}
     </div>
   );
 };

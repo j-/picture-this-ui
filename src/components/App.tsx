@@ -13,6 +13,8 @@ import RequestEnvironmentCamera from './ButtonRequestEnvironmentCamera';
 import CancelRequest from './ButtonCancelRequest';
 import CancelOnPageHidden from './CancelOnPageHidden';
 import Flash from './Flash';
+import BackgroundEmpty from './BackgroundEmpty';
+import './App.css';
 
 const App: React.FC = () => {
   const videoInputDeviceCount = useSelector(getVideoInputDeviceCount);
@@ -31,22 +33,27 @@ const App: React.FC = () => {
     <div className="App">
       <CancelOnPageHidden />
 
-      <code>{videoInputDeviceCount} device(s). {cameraPermission || 'unknown'}. {String(requestingCamera)}. {cameraError || 'none'}.</code><br />
+      <Capture onTouchStart={handleClickCapture} />
 
-      <RequestUserCamera>
-        Request user camera
-      </RequestUserCamera>
-      <RequestEnvironmentCamera>
-        Request environment camera
-      </RequestEnvironmentCamera>
-      <CancelRequest>
-        Close camera
-      </CancelRequest>
+      <div className="App-controls">
+        <code>{videoInputDeviceCount} device(s). {cameraPermission || 'unknown'}. {String(requestingCamera)}. {cameraError || 'none'}.</code><br />
 
-      <Camera>
-        <Flash ref={flashRef} />
-        <Capture onTouchStart={handleClickCapture} />
-      </Camera>
+        <RequestUserCamera>
+          Request user camera
+        </RequestUserCamera>
+        <RequestEnvironmentCamera>
+          Request environment camera
+        </RequestEnvironmentCamera>
+        <CancelRequest>
+          Close camera
+        </CancelRequest>
+      </div>
+
+      <Flash ref={flashRef} />
+
+      <Camera />
+
+      <BackgroundEmpty />
     </div>
   );
 }

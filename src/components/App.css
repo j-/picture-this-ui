@@ -1,0 +1,39 @@
+.App {
+  min-height: 100vh;
+  min-height: calc(var(--vh, 1vh) * 100);
+  position: relative;
+}
+
+.App > .BackgroundEmpty {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  user-select: none;
+  pointer-events: none;
+  z-index: -1;
+}
+
+.App > .Camera {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  user-select: none;
+  pointer-events: none;
+  z-index: 0;
+}
+
+.App > .Flash {
+  z-index: 1;
+}
+
+.App > .ButtonCapture {
+  position: absolute;
+  bottom: 5vh;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 2;
+}
