@@ -3,7 +3,7 @@ import * as ReactDOM from 'react-dom';
 import App from './components/App';
 import * as serviceWorker from './serviceWorker';
 import { createStore, applyMiddleware } from 'redux';
-import rootReducer, { RootReducerState } from './store';
+import rootReducer, { RootReducerState, getCaptures } from './store';
 import { composeWithDevTools } from 'redux-devtools-extension';
 import thunk, { ThunkMiddleware } from 'redux-thunk';
 import { Provider as StoreProvider } from 'react-redux';
@@ -40,6 +40,28 @@ window.addEventListener('unload', () => {
   });
   navigator.sendBeacon('/beacon', blob);
 });
+
+(() => {
+  const known = new Set();
+  store.subscribe(() => {
+    const state = store.getState();
+    const captures = getCaptures(state);
+    for (const capture of captures) {
+      if (known.has(capture)) continue;
+      known.add(capture);
+      fetch(capture)
+        .then((res) => res.blob())
+        .then((blob) => {
+          const body = new FormData();
+          body.set('file', blob);
+          return fetch('/upload', {
+            method: 'POST',
+            body: body,
+          });
+        });
+    }
+  });
+})();
 
 ReactDOM.render(
   <React.StrictMode>
