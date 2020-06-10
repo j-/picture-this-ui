@@ -2,6 +2,7 @@ import { Action } from 'redux';
 
 export * from './action-capture';
 export * from './action-enumerate-devices';
+export * from './action-get-supported-constraints';
 export * from './action-query-permission';
 export * from './action-request-camera';
 
@@ -156,3 +157,41 @@ export const captureImage = (imageSrc: string) => ({
     imageSrc,
   },
 });
+
+/* Get supported constraints start */
+
+export const ACTION_GET_SUPPORTED_CONSTRAINTS_START = 'GET_SUPPORTED_CONSTRAINTS_START';
+
+export interface ActionGetSupportedConstraintsStart extends Action<typeof ACTION_GET_SUPPORTED_CONSTRAINTS_START> {}
+
+export const isActionGetSupportedConstraintsStart = (action: Action): action is ActionGetSupportedConstraintsStart => (
+  action.type === ACTION_GET_SUPPORTED_CONSTRAINTS_START
+);
+
+/* Get supported constraints success */
+
+export const ACTION_GET_SUPPORTED_CONSTRAINTS_SUCCESS = 'GET_SUPPORTED_CONSTRAINTS_SUCCESS';
+
+export interface ActionGetSupportedConstraintsSuccess extends Action<typeof ACTION_GET_SUPPORTED_CONSTRAINTS_SUCCESS> {
+  data: {
+    supports: MediaTrackSupportedConstraints;
+  };
+}
+
+export const isActionGetSupportedConstraintsSuccess = (action: Action): action is ActionGetSupportedConstraintsSuccess => (
+  action.type === ACTION_GET_SUPPORTED_CONSTRAINTS_SUCCESS
+);
+
+/* Get supported constraints error */
+
+export const ACTION_GET_SUPPORTED_CONSTRAINTS_ERROR = 'GET_SUPPORTED_CONSTRAINTS_ERROR';
+
+export interface ActionGetSupportedConstraintsError extends Action<typeof ACTION_GET_SUPPORTED_CONSTRAINTS_ERROR> {
+  data: {
+    message: string;
+  };
+}
+
+export const isActionGetSupportedConstraintsError = (action: Action): action is ActionGetSupportedConstraintsError => (
+  action.type === ACTION_GET_SUPPORTED_CONSTRAINTS_ERROR
+);

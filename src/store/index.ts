@@ -7,6 +7,7 @@ import {
   isActionChangePermission,
   isActionEnumerateDevicesSuccess,
   isActionCaptureImage,
+  isActionGetSupportedConstraintsSuccess,
 } from './actions';
 
 export * from './use-dispatch';
@@ -17,6 +18,9 @@ export interface RootReducerState {
   devices: null | MediaDeviceInfo[];
   videoInputDeviceCount: null | number;
   cameraPermission: null | 'denied' | 'granted' | 'prompt';
+  supports: null | {
+    [constraint: string]: true,
+  };
   isRequestingCamera: boolean;
   requestCameraError: null | string;
   captures: string[];
@@ -27,6 +31,7 @@ export const DEFAULT_STATE: RootReducerState = {
   devices: null,
   videoInputDeviceCount: null,
   cameraPermission: null,
+  supports: null,
   isRequestingCamera: false,
   requestCameraError: null,
   captures: [],
@@ -82,6 +87,14 @@ export const reducer: Reducer = (state = DEFAULT_STATE, action) => {
         ...state.captures,
         imageSrc,
       ],
+    };
+  }
+
+  if (isActionGetSupportedConstraintsSuccess(action)) {
+    const { supports } = action.data;
+    return {
+      ...state,
+      supports,
     };
   }
 

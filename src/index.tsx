@@ -7,7 +7,7 @@ import rootReducer, { RootReducerState } from './store';
 import { composeWithDevTools } from 'redux-devtools-extension';
 import thunk, { ThunkMiddleware } from 'redux-thunk';
 import { Provider as StoreProvider } from 'react-redux';
-import { queryPermission, changePermission, enumerateDevices } from './store/actions';
+import { queryPermission, changePermission, enumerateDevices, getSupportedConstraints } from './store/actions';
 import StreamProvider from './components/Stream';
 import './update-vh';
 import './styles.css';
@@ -30,6 +30,12 @@ const store = createStore(rootReducer, composeWithDevTools(
 (async () => {
   try {
     await store.dispatch(enumerateDevices());
+  } catch (err) {}
+})();
+
+(async () => {
+  try {
+    await store.dispatch(getSupportedConstraints());
   } catch (err) {}
 })();
 
