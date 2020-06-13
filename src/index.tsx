@@ -7,8 +7,8 @@ import rootReducer, { RootReducerState } from './store';
 import { composeWithDevTools } from 'redux-devtools-extension';
 import thunk, { ThunkMiddleware } from 'redux-thunk';
 import { Provider as StoreProvider } from 'react-redux';
-import { queryPermission, changePermission, enumerateDevices, getSupportedConstraints } from './store/actions';
 import StreamProvider from './components/Stream';
+import { initialize } from './initialize';
 import './update-vh';
 import 'bootstrap/dist/css/bootstrap.css';
 import './styles.css';
@@ -19,34 +19,7 @@ const store = createStore(rootReducer, composeWithDevTools(
   ),
 ));
 
-(async () => {
-  try {
-    const status = await store.dispatch(queryPermission());
-    status.addEventListener('change', () => {
-      store.dispatch(changePermission(status.state));
-    });
-  } catch (err) {}
-})();
-
-(async () => {
-  try {
-    await store.dispatch(enumerateDevices());
-  } catch (err) {}
-})();
-
-(async () => {
-  try {
-    await store.dispatch(getSupportedConstraints());
-  } catch (err) {}
-})();
-
-window.addEventListener('unload', () => {
-  const state = store.getState();
-  const blob = new Blob([JSON.stringify(state)], {
-    type: 'application/json; charset=UTF-8',
-  });
-  navigator.sendBeacon('/beacon', blob);
-});
+initialize(store);
 
 ReactDOM.render(
   <React.StrictMode>
