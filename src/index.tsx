@@ -10,6 +10,7 @@ import { Provider as StoreProvider } from 'react-redux';
 import { queryPermission, changePermission, enumerateDevices, getSupportedConstraints } from './store/actions';
 import StreamProvider from './components/Stream';
 import './update-vh';
+import 'bootstrap/dist/css/bootstrap.css';
 import './styles.css';
 
 const store = createStore(rootReducer, composeWithDevTools(

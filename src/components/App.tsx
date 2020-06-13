@@ -37,17 +37,21 @@ const App: React.FC = () => {
       <Capture onTouchStart={handleClickCapture} />
 
       <div className="App-controls">
-        <code>{videoInputDeviceCount} device(s). {cameraPermission || 'unknown'}. {String(requestingCamera)}. {cameraError || 'none'}.</code><br />
-
-        <RequestUserCamera>
-          Request user camera
-        </RequestUserCamera>
-        <RequestEnvironmentCamera>
-          Request environment camera
-        </RequestEnvironmentCamera>
-        <CancelRequest>
-          Close camera
-        </CancelRequest>
+        <div className="btn-group m-2">
+          <RequestUserCamera className="btn btn-light">
+            User
+          </RequestUserCamera>
+          <RequestEnvironmentCamera className="btn btn-light">
+            Environment
+          </RequestEnvironmentCamera>
+          <CancelRequest className="btn btn-danger">
+            Close
+          </CancelRequest>
+        </div>
+        <br />
+        <code className="App-debug m-2">
+          {videoInputDeviceCount} device(s). {cameraPermission || 'unknown'}. {String(requestingCamera)}. {cameraError || 'none'}.
+        </code>
       </div>
 
       <Flash ref={flashRef} />
