@@ -5,29 +5,37 @@ import {
   getVideoInputDeviceCount,
   isRequestingCamera,
   useSelector,
+  useDispatch,
 } from '../store';
+import { capture } from '../store/actions';
 import Camera from './Camera';
 import Capture from './ButtonCapture';
 import RequestUserCamera from './ButtonRequestUserCamera';
 import RequestEnvironmentCamera from './ButtonRequestEnvironmentCamera';
 import CancelRequest from './ButtonCancelRequest';
 import CancelOnPageHidden from './CancelOnPageHidden';
-import Flash from './Flash';
+import Flash, { useFlash } from './Flash';
 import BackgroundEmpty from './BackgroundEmpty';
 import Masking from './Masking';
+import { useVideo } from './Stream';
 import './App.css';
 
 const App: React.FC = () => {
+  const dispatch = useDispatch();
   const videoInputDeviceCount = useSelector(getVideoInputDeviceCount);
   const cameraPermission = useSelector(getCameraPermission);
   const requestingCamera = useSelector(isRequestingCamera);
   const cameraError = useSelector(getCameraError);
 
-  const flashRef = React.useRef<{ start: () => void }>();
-  const handleClickCapture = () => {
-    const flash = flashRef.current;
-    if (!flash) return;
-    flash.start();
+  const video = useVideo();
+  const [flashRef, flash] = useFlash();
+
+  const handleClickCapture = async () => {
+    flash();
+    try {
+      if (!video) throw new Error('Expected video element');
+      await dispatch(capture(video));
+    } catch (err) {}
   };
 
   return (

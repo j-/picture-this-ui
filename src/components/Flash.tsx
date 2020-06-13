@@ -19,3 +19,13 @@ const Flash = React.forwardRef((_props, ref) => {
 });
 
 export default Flash;
+
+export type StartType = { start: () => void }
+export type RefType = React.RefObject<StartType>
+export type CallbackType = () => void
+
+export const useFlash = (): [RefType, CallbackType] => {
+  const ref = React.useRef<StartType>(null);
+  const callback = () => ref.current?.start();
+  return [ref, callback];
+};
