@@ -61,3 +61,16 @@
   position: relative;
   z-index: 4;
 }
+
+.ReactModal__Overlay {
+  z-index: 10;
+}
+
+.ReactModal__Content {
+  margin: 0;
+  padding: 0;
+}
+
+.App-captured {
+  object-fit: contain;
+}

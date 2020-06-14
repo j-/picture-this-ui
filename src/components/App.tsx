@@ -1,4 +1,5 @@
 import * as React from 'react';
+import Modal from 'react-modal';
 import {
   getCameraError,
   getCameraPermission,
@@ -14,7 +15,6 @@ import RequestUserCamera from './ButtonRequestUserCamera';
 import RequestEnvironmentCamera from './ButtonRequestEnvironmentCamera';
 import CancelRequest from './ButtonCancelRequest';
 import CancelOnPageHidden from './CancelOnPageHidden';
-import Flash, { useFlash } from './Flash';
 import BackgroundEmpty from './BackgroundEmpty';
 import Masking from './Masking';
 import { useVideo } from './Stream';
@@ -28,19 +28,28 @@ const App: React.FC = () => {
   const cameraError = useSelector(getCameraError);
 
   const video = useVideo();
-  const [flashRef, flash] = useFlash();
+
+  const [captureSrc, setCaptureSrc] = React.useState<string | null>(null);
+  const isModalOpen = captureSrc !== null;
 
   const handleClickCapture = async () => {
-    flash();
     try {
       if (!video) throw new Error('Expected video element');
-      await dispatch(capture(video));
+      const img = await dispatch(capture(video));
+      setCaptureSrc(img.src);
     } catch (err) {}
   };
 
   return (
     <div className="App">
       <CancelOnPageHidden />
+
+      <Modal
+        isOpen={isModalOpen}
+
+      >
+        {captureSrc && <img className="App-captured" src={captureSrc} alt="" />}
+      </Modal>
 
       <Capture onTouchStart={handleClickCapture} />
 
@@ -61,8 +70,6 @@ const App: React.FC = () => {
           {videoInputDeviceCount} device(s). {cameraPermission || 'unknown'}. {String(requestingCamera)}. {cameraError || 'none'}.
         </code>
       </div>
-
-      <Flash ref={flashRef} />
 
       <Masking />
 
