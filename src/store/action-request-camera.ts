@@ -8,10 +8,11 @@ import {
   ActionRequestCameraStart,
   ActionRequestCameraSuccess,
 } from './actions';
+import { MutableState } from './types';
 
 type R = Promise<MediaStream>
 type S = RootReducerState
-type E = void
+type E = MutableState
 type A = (
   ActionRequestCameraError |
   ActionRequestCameraStart |
@@ -20,7 +21,7 @@ type A = (
 
 export type ActionRequestCamera = ThunkAction<R, S, E, A>
 
-export const requestCamera = (facingMode: VideoFacingModeEnum = 'environment'): ActionRequestCamera => async (dispatch) => {
+export const requestCamera = (facingMode: VideoFacingModeEnum = 'environment'): ActionRequestCamera => async (dispatch, _getState, mutable) => {
   dispatch<ActionRequestCameraStart>({
     type: ACTION_REQUEST_CAMERA_START,
   });
@@ -36,6 +37,7 @@ export const requestCamera = (facingMode: VideoFacingModeEnum = 'environment'): 
         facingMode,
       },
     });
+    mutable.stream = stream;
     dispatch<ActionRequestCameraSuccess>({
       type: ACTION_REQUEST_CAMERA_SUCCESS,
     });

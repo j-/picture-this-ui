@@ -5,10 +5,11 @@ import {
   ACTION_CAPTURE_IMAGE,
   ActionCaptureImage,
 } from './actions';
+import { MutableState } from './types';
 
 type R = Promise<HTMLImageElement>
 type S = RootReducerState
-type E = void
+type E = MutableState
 type A = ActionCaptureImage
 
 export type ActionCapture = ThunkAction<R, S, E, A>

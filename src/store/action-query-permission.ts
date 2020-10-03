@@ -8,10 +8,11 @@ import {
   ActionQueryPermissionStart,
   ActionQueryPermissionSuccess,
 } from './actions';
+import { MutableState } from './types';
 
 type R = Promise<PermissionStatus>
 type S = RootReducerState
-type E = void
+type E = MutableState
 type A = (
   ActionQueryPermissionError |
   ActionQueryPermissionStart |

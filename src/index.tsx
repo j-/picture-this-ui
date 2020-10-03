@@ -2,8 +2,9 @@ import * as React from 'react';
 import * as ReactDOM from 'react-dom';
 import App from './components/App';
 import * as serviceWorker from './serviceWorker';
-import { createStore, applyMiddleware } from 'redux';
+import { createStore, applyMiddleware, AnyAction } from 'redux';
 import rootReducer, { RootReducerState } from './store';
+import { MutableState } from './store/types';
 import { composeWithDevTools } from 'redux-devtools-extension';
 import thunk, { ThunkMiddleware } from 'redux-thunk';
 import { Provider as StoreProvider } from 'react-redux';
@@ -15,7 +16,7 @@ import './styles.css';
 
 const store = createStore(rootReducer, composeWithDevTools(
   applyMiddleware(
-    thunk as ThunkMiddleware<RootReducerState>,
+    thunk.withExtraArgument({}) as ThunkMiddleware<RootReducerState, AnyAction, MutableState>,
   ),
 ));
 

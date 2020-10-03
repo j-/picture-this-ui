@@ -8,10 +8,11 @@ import {
   ActionGetSupportedConstraintsStart,
   ActionGetSupportedConstraintsSuccess,
 } from './actions';
+import { MutableState } from './types';
 
 type R = Promise<MediaTrackSupportedConstraints>
 type S = RootReducerState
-type E = void
+type E = MutableState
 type A = (
   ActionGetSupportedConstraintsError |
   ActionGetSupportedConstraintsStart |

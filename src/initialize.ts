@@ -1,18 +1,12 @@
-import { Store, AnyAction } from 'redux';
-import { ThunkDispatch } from 'redux-thunk';
-import { RootReducerState } from './store';
 import {
   queryPermission,
   changePermission,
   enumerateDevices,
   getSupportedConstraints,
 } from './store/actions';
+import { StoreType } from './store/types';
 
-type AppStore = Store<RootReducerState, AnyAction> & {
-  dispatch: ThunkDispatch<RootReducerState, void, AnyAction>
-}
-
-export const initialize = (store: AppStore) => {
+export const initialize = (store: StoreType) => {
   // Query the navigator for the camera permission
   // and update if the permission changes.
   (async () => {

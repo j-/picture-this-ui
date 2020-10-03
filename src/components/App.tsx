@@ -14,6 +14,7 @@ import Capture from './ButtonCapture';
 import RequestUserCamera from './ButtonRequestUserCamera';
 import RequestEnvironmentCamera from './ButtonRequestEnvironmentCamera';
 import CancelRequest from './ButtonCancelRequest';
+import ToggleLight from './ButtonToggleLight';
 import CancelOnPageHidden from './CancelOnPageHidden';
 import BackgroundEmpty from './BackgroundEmpty';
 import Masking from './Masking';
@@ -61,6 +62,9 @@ const App: React.FC = () => {
           <RequestEnvironmentCamera className="btn btn-light">
             Environment
           </RequestEnvironmentCamera>
+          <ToggleLight className="btn btn-dark">
+            Light
+          </ToggleLight>
           <CancelRequest className="btn btn-danger">
             Close
           </CancelRequest>

@@ -8,10 +8,11 @@ import {
   ActionEnumerateDevicesStart,
   ActionEnumerateDevicesSuccess,
 } from './actions';
+import { MutableState } from './types';
 
 type R = Promise<MediaDeviceInfo[]>
 type S = RootReducerState
-type E = void
+type E = MutableState
 type A = (
   ActionEnumerateDevicesError |
   ActionEnumerateDevicesStart |
