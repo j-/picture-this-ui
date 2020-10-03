@@ -53,3 +53,6 @@ export const requestCamera = (facingMode: VideoFacingModeEnum = 'environment'): 
     throw err;
   }
 };
+
+export const requestCameraUser = () => requestCamera('user');
+export const requestCameraEnvironment = () => requestCamera('environment');
