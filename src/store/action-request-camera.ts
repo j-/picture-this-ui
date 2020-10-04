@@ -1,5 +1,6 @@
 import { ThunkAction } from 'redux-thunk';
 import { RootReducerState } from '.';
+import { setStream } from './action-set-stream';
 import {
   ACTION_REQUEST_CAMERA_ERROR,
   ACTION_REQUEST_CAMERA_START,
@@ -37,7 +38,7 @@ export const requestCamera = (facingMode: VideoFacingModeEnum = 'environment'): 
         facingMode,
       },
     });
-    mutable.stream = stream;
+    dispatch(setStream(stream));
     dispatch<ActionRequestCameraSuccess>({
       type: ACTION_REQUEST_CAMERA_SUCCESS,
     });
